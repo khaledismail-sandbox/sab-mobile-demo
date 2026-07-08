@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SAB Mobile</title>
+  <script>
+    // GitHub Pages SPA redirect (spa-github-pages pattern, adapted).
+    // Pages serves this file for any path that has no real file. We locate the
+    // app's base path by scanning for the first known route segment, so the same
+    // file works at the domain root, under /<repo>/ on *.github.io, and under
+    // any local base path — then bounce to index.html with the route in ?p=.
+    (function () {
+      var l = window.location;
+      var KNOWN = ['login', 'home', 'transfer', 'improved-transfer', 'cards', 'support', 'more'];
+      var parts = l.pathname.split('/');
+      // scan for the LAST known segment: no valid inner route path contains a
+      // KNOWN token in a non-leading position (sub-segments are beneficiary,
+      // details, error, authorise, complete, add), so the last match is always
+      // the true route start — even when the repo itself is named e.g. "home"
+      var idx = -1;
+      for (var i = parts.length - 1; i >= 1; i--) {
+        if (KNOWN.indexOf(parts[i]) !== -1) { idx = i; break; }
+      }
+      var base, route;
+      if (idx !== -1) {
+        base = parts.slice(0, idx).join('/') + '/';
+        route = parts.slice(idx).join('/');
+      } else {
+        // Unknown path: fall back to "/<repo>/" on *.github.io project sites, "/" elsewhere.
+        base = l.hostname.slice(-10) === '.github.io' && parts.length > 1 && parts[1]
+          ? '/' + parts[1] + '/' : '/';
+        route = '';
+      }
+      var target = l.origin + base
+        + (route ? '?p=' + encodeURIComponent('/' + route) : '')
+        + (l.search ? (route ? '&' : '?') + 'q=' + encodeURIComponent(l.search.slice(1)) : '')
+        + l.hash;
+      l.replace(target);
+    })();
+  </script>
+</head>
+<body></body>
+</html>

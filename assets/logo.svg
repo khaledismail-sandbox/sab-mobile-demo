@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 32" aria-label="SAB">
+  <g fill="#E20613">
+    <polygon points="0,16 12,4 12,28"/>
+    <polygon points="48,16 36,4 36,28"/>
+    <polygon points="12,4 36,4 24,16"/>
+    <polygon points="12,28 36,28 24,16"/>
+  </g>
+  <text x="56" y="24" font-family="Inter, Arial, Helvetica, sans-serif" font-weight="800" font-size="19" fill="#231F20" letter-spacing="1.5">SAB</text>
+</svg>
